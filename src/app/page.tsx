@@ -4,14 +4,51 @@ import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import documentIcon from "/public/assets/document-blue.svg";
 export default function Home() {
-  const [file, setFile] = useState(null);
+  const [transactions, setTransactions] = useState<Transaction[] | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const reader = new FileReader();
-
+  enum TransactionTypes {
+    type1 = "producer_sell",
+    type2 = "affiliate_sell",
+    type3 = "commission_paid",
+    type4 = "commission_received",
+  }
+  type Transaction = {
+    type: TransactionTypes;
+    amount: number;
+    date: string;
+    productName: string;
+    sellerName: string;
+  };
   reader.onload = function (event) {
     if (!event.target) return;
     const fileContent = event.target.result;
-    console.log(fileContent); // this will log the text content of the file
+    setTransactions(getTransactionsFromText(fileContent as string));
+    console.log(fileContent);
+  };
+
+  const getTransactionsFromText = (text: string): Transaction[] | null => {
+    if (!text) return null;
+
+    const lines = text.split("\n") as string[];
+
+    const transactions = lines.reduce((acc: Transaction[], curr) => {
+      return [
+        ...acc,
+        {
+          type: TransactionTypes[
+            ("type" + curr.slice(0, 1)) as keyof typeof TransactionTypes
+          ],
+          amount: parseInt(curr.slice(56, 66)),
+          date: curr.slice(1, 26),
+          productName: curr.slice(26, 56).trim(),
+          sellerName: curr.slice(66),
+        },
+      ];
+    }, []);
+
+    console.log(transactions);
+    return transactions;
   };
 
   const handleChange = (file: any) => {
@@ -25,6 +62,10 @@ export default function Home() {
         <FileUploader
           onTypeError={() => {
             setErrorMessage("Invalid file type, try again.");
+          }}
+          hoverTitle=" "
+          dropMessageStyle={{
+            backgroundColor: "#b7bbdd58",
           }}
           handleChange={handleChange}
           name="file"
