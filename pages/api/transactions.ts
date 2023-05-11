@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "../../lib/db";
 
-const GetTransactions = (req: NextApiRequest, res: NextApiResponse) => {
+const getTransactions = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     console.log(req.body);
     const tx = db.transaction();
@@ -11,20 +11,17 @@ const GetTransactions = (req: NextApiRequest, res: NextApiResponse) => {
         [i.type, i.date, i.productName, i.sellerName, i.amount]
       );
     }
-    const result = tx
-      .rollback((e: any) => {
-        console.log(e);
-      })
-      .commit()
-      .then((data) => {
-        res.status(200).json(data);
-      })
-      .catch((e) => {
-        console.log(e);
-        res.status(500).json(e);
-      });
-    console.log(result);
+    try {
+      const result = await tx
+        .rollback((e: any) => {
+          console.log(e);
+        })
+        .commit();
+      res.status(200).json(req.body);
+    } catch (e) {
+      res.status(400).json(e);
+    }
   }
 };
 
-export default GetTransactions;
+export default getTransactions;
