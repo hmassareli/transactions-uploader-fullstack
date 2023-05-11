@@ -1,4 +1,6 @@
 "use client";
+import { postTransactions } from "@/services";
+import { Transaction, TransactionTypes } from "@/types";
 import Image from "next/image";
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
@@ -6,24 +8,17 @@ import documentIcon from "/public/assets/document-blue.svg";
 export default function Home() {
   const [transactions, setTransactions] = useState<Transaction[] | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
-  const reader = new FileReader();
-  enum TransactionTypes {
-    type1 = "producer_sell",
-    type2 = "affiliate_sell",
-    type3 = "commission_paid",
-    type4 = "commission_received",
-  }
-  type Transaction = {
-    type: TransactionTypes;
-    amount: number;
-    date: string;
-    productName: string;
-    sellerName: string;
-  };
+  const [isDataReady, setIsDataReady] = useState(false);
+
+  const reader = new window.FileReader();
+
   reader.onload = function (event) {
     if (!event.target) return;
     const fileContent = event.target.result;
-    setTransactions(getTransactionsFromText(fileContent as string));
+    const transactionsArray = getTransactionsFromText(fileContent as string);
+    setTransactions(transactionsArray);
+    if (!transactionsArray) return;
+    setIsDataReady(true);
     console.log(fileContent);
   };
 
@@ -33,6 +28,7 @@ export default function Home() {
     const lines = text.split("\n") as string[];
 
     const transactions = lines.reduce((acc: Transaction[], curr) => {
+      if (!curr.trim()) return acc;
       return [
         ...acc,
         {
@@ -82,6 +78,19 @@ export default function Home() {
             </p>
           </div>
         </FileUploader>
+        {isDataReady && transactions && (
+          <>
+            <p>Transactions received: {transactions?.length}</p>
+            <p
+              onClick={() => {
+                postTransactions(transactions);
+              }}
+              className="border border-green-500 cursor-pointer rounded-lg text-green-500 font-semibold bg-[#4dc76d2c] p-4"
+            >
+              Send your transactions
+            </p>
+          </>
+        )}
         {errorMessage && (
           <p className="border border-red-500 rounded-lg text-red-500 font-semibold bg-[#c74d4d2d] p-4">
             {errorMessage}
