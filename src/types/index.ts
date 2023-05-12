@@ -4,6 +4,7 @@ export type Transaction = {
   date: string;
   productName: string;
   sellerName: string;
+  affectedUser: string;
 };
 export enum TransactionTypes {
   type1 = "producer_sell",

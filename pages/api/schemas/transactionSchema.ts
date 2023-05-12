@@ -7,6 +7,7 @@ const transactionSchema = Yup.object().shape<Yup.ObjectShape>({
   date: Yup.string().required(),
   productName: Yup.string().required(),
   sellerName: Yup.string().required(),
+  affectedUser: Yup.string().required(),
 });
 const transactionArraySchema = Yup.array().of(transactionSchema);
 

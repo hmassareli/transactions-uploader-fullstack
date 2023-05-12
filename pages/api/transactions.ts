@@ -7,8 +7,8 @@ const getTransactions = async (req: NextApiRequest, res: NextApiResponse) => {
     const tx = db.transaction();
     for (const i of req.body) {
       tx.query(
-        "INSERT INTO transactions(type, date, product_name, seller, amount ) VALUES(?, ?, ?, ?, ?)",
-        [i.type, i.date, i.productName, i.sellerName, i.amount]
+        "INSERT INTO transactions(type, date, product_name, seller, amount, affected_user ) VALUES(?, ?, ?, ?, ?, ?)",
+        [i.type, i.date, i.productName, i.sellerName, i.amount, i.affectedUser]
       );
     }
     try {
