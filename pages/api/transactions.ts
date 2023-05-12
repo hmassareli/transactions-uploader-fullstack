@@ -1,7 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "../../lib/db";
 
-const getTransactions = async (req: NextApiRequest, res: NextApiResponse) => {
+const transactionsService = async (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => {
   if (req.method === "POST") {
     console.log(req.body);
     const tx = db.transaction();
@@ -24,4 +27,4 @@ const getTransactions = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default getTransactions;
+export default transactionsService;
