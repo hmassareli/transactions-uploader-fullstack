@@ -1,7 +1,9 @@
-export default function AnotherPage() {
+"use client";
+const UploadsPage = () => {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       asdasd
     </main>
   );
-}
+};
+export default UploadsPage;
