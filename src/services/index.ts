@@ -7,7 +7,7 @@ export type Balances = {
     balance: number;
   };
 };
-export type NormalizedBalances = {
+export type NormalizedBalance = {
   user: string;
   type: "affiliate" | "producer";
   balance: number;
@@ -17,4 +17,8 @@ const api = axios.create({
 });
 export const postTransactions = (data: Transaction[]) => {
   return api.post("/transactions", data);
+};
+
+export const getUserBalances = () => {
+  return api.get<NormalizedBalance[]>("/balances");
 };
