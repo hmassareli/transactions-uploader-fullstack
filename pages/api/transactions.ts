@@ -1,3 +1,4 @@
+import { Transaction } from "@/types";
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "../../lib/db";
 
@@ -21,6 +22,17 @@ const transactionsService = async (
         })
         .commit();
       res.status(200).json(req.body);
+    } catch (e) {
+      res.status(400).json(e);
+    }
+  }
+  if (req.method === "GET") {
+    try {
+      const transactions = (await db.query(
+        "SELECT type, date, product_name AS productName, seller AS sellerName, amount, affected_user AS affectedUser FROM transactions"
+      )) as Transaction[];
+
+      res.status(200).json(transactions);
     } catch (e) {
       res.status(400).json(e);
     }

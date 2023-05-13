@@ -18,6 +18,9 @@ const api = axios.create({
 export const postTransactions = (data: Transaction[]) => {
   return api.post("/transactions", data);
 };
+export const getTransactions = () => {
+  return api.get<Transaction[]>("/transactions");
+};
 
 export const getUserBalances = () => {
   return api.get<NormalizedBalance[]>("/balances");

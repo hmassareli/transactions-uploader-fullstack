@@ -1,5 +1,6 @@
 "use client";
 import { NormalizedBalance, getUserBalances } from "@/services";
+import { fromCentsToDollars } from "@/utils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -7,10 +8,6 @@ import { useEffect, useState } from "react";
 const UploadsPage = () => {
   const router = useRouter();
   const [users, setUsers] = useState<NormalizedBalance[] | []>([]);
-
-  const fromCentsToDollars = (cents: number) => {
-    return `$${(cents / 100).toFixed(2)}`;
-  };
 
   const getUsers = async () => {
     const users = await getUserBalances();
