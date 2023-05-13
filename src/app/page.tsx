@@ -2,13 +2,14 @@
 import { normalizeTransactions } from "@/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { TransactionsContext } from "../../context/context";
 import documentIcon from "/public/assets/document-blue.svg";
 const Home = () => {
   const [errorMessage, setErrorMessage] = useState("");
-  const { setTransactions } = useContext(TransactionsContext);
+  const { transactions, setTransactions } = useContext(TransactionsContext);
+  const [hasUploaded, setHasUploaded] = useState(false);
   const reader = new window.FileReader();
   const router = useRouter();
   reader.onload = function (event) {
@@ -17,12 +18,18 @@ const Home = () => {
     try {
       const transactionsArray = normalizeTransactions(fileContent as string);
       if (!transactionsArray) return;
+      setHasUploaded(true);
       setTransactions(transactionsArray);
-      router.push("/uploads");
     } catch (e) {
       setErrorMessage(`${e}`);
     }
   };
+
+  useEffect(() => {
+    if (transactions.length !== 0 && hasUploaded) {
+      router.push("/uploads");
+    }
+  }, [transactions, router, hasUploaded]);
 
   const handleChange = (file: any) => {
     reader.readAsText(file);
