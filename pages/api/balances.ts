@@ -1,4 +1,4 @@
-import { Balances, NormalizedBalances } from "@/services";
+import { Balances, NormalizedBalance } from "@/services";
 import { Transaction } from "@/types";
 import { NextApiRequest, NextApiResponse } from "next";
 import { db } from "../../lib/db";
@@ -31,7 +31,7 @@ const balancesService = async (req: NextApiRequest, res: NextApiResponse) => {
         {}
       );
       const normalizedBalances = Object.entries(balances).reduce(
-        (acc: NormalizedBalances[], [key, values]) => {
+        (acc: NormalizedBalance[], [key, values]) => {
           return [...acc, { user: key, ...values }];
         },
         []
@@ -39,7 +39,6 @@ const balancesService = async (req: NextApiRequest, res: NextApiResponse) => {
 
       res.status(200).json(normalizedBalances);
     } catch (e) {
-      console.log(e);
       res.status(400).json(e);
     }
   }
