@@ -16,6 +16,7 @@ const Users = ({ users }: { users: NormalizedBalance[] }) => {
           <div
             className="odd:bg-[#b7bbdd3a] flex py-3 gap-2 px-8 w-full justify-between font-bold text-sm"
             key={index}
+            data-testid="user"
           >
             <p className="w-[200px] text-[#1944A0]">{user.user}</p>
             <p className="w-[250px] text-[#1944A0]">{user.type}</p>

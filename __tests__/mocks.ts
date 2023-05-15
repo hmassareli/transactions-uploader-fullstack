@@ -1,3 +1,4 @@
+import { NormalizedBalance } from "@/services";
 import { TransactionTypes } from "@/types";
 
 export const transactionsMock = [
@@ -161,4 +162,14 @@ export const transactionsMock = [
     sellerName: "ELIANA NOGUEIRA",
     affectedUser: "ELIANA NOGUEIRA",
   },
+];
+
+export const usersMock: NormalizedBalance[] = [
+  { user: "JOSE CARLOS", balance: 67500, type: "producer" },
+  { user: "MARIA CANDIDA", balance: 300000, type: "producer" },
+  { user: "THIAGO OLIVEIRA", type: "affiliate", balance: 9000 },
+  { user: "ELIANA NOGUEIRA", balance: 1560000, type: "producer" },
+  { user: "CARLOS BATISTA", type: "affiliate", balance: 100000 },
+  { user: "CAROLINA MACHADO", type: "affiliate", balance: 100000 },
+  { user: "CELSO DE MELO", type: "affiliate", balance: 100000 },
 ];
