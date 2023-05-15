@@ -33,8 +33,7 @@ export const normalizeTransactions = (txt: string): Transaction[] => {
         );
       }
     }
-
-    return [
+    const result = [
       ...acc,
       {
         amount,
@@ -45,6 +44,8 @@ export const normalizeTransactions = (txt: string): Transaction[] => {
         affectedUser,
       },
     ];
+
+    return result;
   }, []);
 };
 
