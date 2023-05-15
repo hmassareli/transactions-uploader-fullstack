@@ -19,6 +19,7 @@ const Transactions = ({
       <div className="bg-[#b7bbdd39]  flex flex-col items-center justify-center w-full max-w-5xl ">
         {allTransactions.map((transaction: Transaction, index: number) => (
           <div
+            data-testid="transaction"
             className="odd:bg-[#b7bbdd3a] flex py-3 gap-2 px-8 w-full justify-between font-bold text-sm"
             key={index}
           >
