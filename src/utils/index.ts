@@ -50,5 +50,5 @@ export const normalizeTransactions = (txt: string): Transaction[] => {
 };
 
 export const fromCentsToDollars = (cents: number) => {
-  return `${(cents / 100).toFixed(2)}`;
+  return (cents / 100).toFixed(2);
 };
