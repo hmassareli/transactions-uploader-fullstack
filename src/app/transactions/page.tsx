@@ -19,7 +19,7 @@ const UploadsPage = () => {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center ">
+    <main className="flex flex-col items-center ">
       <h1 className="text-2xl font-bold mt-5"> Transactions History</h1>
       <div className=" h-full mt-7 max-h-[600px] overflow-auto scroll w-full max-w-4xl rounded-b-lg">
         <div className="flex flex-col items-center justify-center gap-4 w-full">
