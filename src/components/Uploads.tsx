@@ -15,6 +15,7 @@ const Uploads = ({ transactions }: { transactions: Transaction[] }) => {
       <div className="bg-[#b7bbdd39]  flex flex-col items-center justify-center w-full max-w-5xl ">
         {transactions.map((transaction: Transaction, index: number) => (
           <div
+            data-testid="upload"
             className="odd:bg-[#b7bbdd3a] flex py-3 gap-2 px-8 w-full justify-between font-bold text-sm"
             key={index}
           >
