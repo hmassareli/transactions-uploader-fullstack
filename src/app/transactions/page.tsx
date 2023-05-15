@@ -1,4 +1,5 @@
 "use client";
+import Transactions from "@/components/Transactions";
 import { getTransactions } from "@/services";
 import { Transaction } from "@/types";
 import Link from "next/link";
@@ -20,7 +21,7 @@ const UploadsPage = () => {
   return (
     <main className="flex flex-col items-center ">
       <h1 className="text-2xl font-bold mt-5"> Transactions History</h1>
-
+      <Transactions allTransactions={allTransactions} />
       <Link className="mt-4 cursor-pointer text-green hover:underline" href="/">
         Go back to home
       </Link>
