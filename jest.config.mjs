@@ -9,6 +9,25 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 /** @type {import('jest').Config} */
 const config = {
+  // The root of your source code, typically /src
+  // `<rootDir>` is a token Jest substitutes
+  // Jest transformations -- this adds support for TypeScript
+  // using ts-jest
+
+  transform: {
+    "^.+\\.svg$": "<rootDir>/src/utils/svgTransform.js",
+    "^.+\\.tsx?$": "ts-jest",
+  },
+
+  // Runs special logic, such as cleaning up components
+  // when using React Testing Library and adds special
+  // extended assertions to Jest
+  // Test spec file resolution pattern
+  // Matches parent folder `__tests__` and filename
+  // should contain `test` or `spec`.
+
+  // Module file extensions for importing
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   bail: 4,
   testMatch: ["**/__tests__/**/*.test.ts?(x)"],
   coverageProvider: "v8",
