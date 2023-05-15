@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <TransactionsProvider>
-          <div className="flex justify-evenly font-semibold items-center rounded-lg w-[400px] h-11 m-auto mt-5 gap-3 text-[#1944A0]">
+          <div className="flex justify-evenly font-bold items-center rounded-lg w-[400px] h-11 m-auto mt-5 gap-3 text-[#1944A0]">
             <Link
               className={
                 pathName === "/"
