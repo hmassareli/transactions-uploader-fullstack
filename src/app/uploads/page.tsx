@@ -1,16 +1,30 @@
 "use client";
 import Uploads from "@/components/Uploads";
 import { postTransactions } from "@/services";
+import { Transaction } from "@/types";
+import moment from "moment";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { TransactionsContext } from "../../../context/context";
-
 const UploadsPage = () => {
   const router = useRouter();
   const { transactions } = useContext(TransactionsContext);
 
   const handlePostTransactions = async () => {
-    await postTransactions(transactions);
+    const normalizedTransactions = transactions.reduce(
+      (acc: Transaction[], curr) => {
+        return [
+          ...acc,
+          {
+            ...curr,
+            date: `${moment(curr.date).format("YYYY-MM-DD HH:mm:ss")}`,
+          },
+        ];
+      },
+      []
+    );
+
+    await postTransactions(normalizedTransactions);
     router.push("/users");
   };
 
