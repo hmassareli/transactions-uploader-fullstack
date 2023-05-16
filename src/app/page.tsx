@@ -10,20 +10,24 @@ const Home = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const { transactions, setTransactions } = useContext(TransactionsContext);
   const [hasUploaded, setHasUploaded] = useState(false);
-  const reader = new window.FileReader();
+  let reader: FileReader | null = null;
   const router = useRouter();
-  reader.onload = function (event) {
-    if (!event.target) return;
-    const fileContent = event.target.result;
-    try {
-      const transactionsArray = normalizeTransactions(fileContent as string);
-      if (!transactionsArray) return;
-      setHasUploaded(true);
-      setTransactions(transactionsArray);
-    } catch (e) {
-      setErrorMessage(`${e}`);
-    }
-  };
+
+  useEffect(() => {
+    reader = new window.FileReader();
+    reader.onload = function (event) {
+      if (!event.target) return;
+      const fileContent = event.target.result;
+      try {
+        const transactionsArray = normalizeTransactions(fileContent as string);
+        if (!transactionsArray) return;
+        setHasUploaded(true);
+        setTransactions(transactionsArray);
+      } catch (e) {
+        setErrorMessage(`${e}`);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (transactions.length !== 0 && hasUploaded) {
@@ -32,7 +36,7 @@ const Home = () => {
   }, [transactions, router, hasUploaded]);
 
   const handleChange = (file: any) => {
-    reader.readAsText(file);
+    reader!.readAsText(file);
     setErrorMessage("");
   };
 
