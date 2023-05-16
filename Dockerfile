@@ -11,6 +11,11 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV MYSQL_HOST=db
+ENV MYSQL_PORT=3306
+ENV MYSQL_DATABASE=transactions
+ENV MYSQL_USER=user
+ENV MYSQL_PASSWORD=pass
 
 RUN npm run build
 
