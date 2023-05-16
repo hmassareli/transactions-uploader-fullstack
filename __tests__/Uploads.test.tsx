@@ -1,7 +1,7 @@
 import Uploads from "@/components/Uploads";
 import { describe, expect, it } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
-import { transactionsMock } from "./mocks";
+import { transactionsMock } from "./mocks/mocks";
 
 describe("Uploads component tests", () => {
   it("should render the expected information", () => {

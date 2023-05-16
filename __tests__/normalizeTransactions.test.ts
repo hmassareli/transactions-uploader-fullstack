@@ -1,6 +1,9 @@
 import { normalizeTransactions } from "@/utils";
 import { describe, expect, it } from "@jest/globals";
-import { normalizedTransactionsMock, transactionsFileMock } from "./mocks";
+import {
+  normalizedTransactionsMock,
+  transactionsFileMock,
+} from "./mocks/mocks";
 
 describe("normalizedTransactionsMock", () => {
   it("should return the expected normalized array", () => {

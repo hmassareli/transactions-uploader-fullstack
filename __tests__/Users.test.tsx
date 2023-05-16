@@ -1,7 +1,7 @@
 import Users from "@/components/Users";
 import { describe, expect, it } from "@jest/globals";
 import { render, screen } from "@testing-library/react";
-import { usersMock } from "./mocks";
+import { usersMock } from "./mocks/mocks";
 
 describe("Users component tests", () => {
   it("should render the expected information", () => {
