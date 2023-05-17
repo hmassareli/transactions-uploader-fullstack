@@ -39,6 +39,7 @@ pnpm dev
 ```bash
 npm run test
 ```
+- **To test the API requests**, you can use the postman collection "Transactions.postman_collection.json" on the root folder
 
 ### Getting Started on docker:
 If you prefer running the app using Docker and Docker Compose, you can execute the following command:
