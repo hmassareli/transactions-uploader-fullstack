@@ -3,10 +3,8 @@ import Transactions from "@/components/Transactions";
 import { getTransactions } from "@/services";
 import { Transaction } from "@/types";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 const UploadsPage = () => {
-  const router = useRouter();
   const [allTransactions, setAllTransactions] = useState<Transaction[]>([]);
 
   const getAllTransactions = async () => {

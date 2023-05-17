@@ -2,11 +2,9 @@
 import Users from "@/components/Users";
 import { NormalizedBalance, getUserBalances } from "@/services";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const UploadsPage = () => {
-  const router = useRouter();
   const [users, setUsers] = useState<NormalizedBalance[] | []>([]);
 
   const getUsers = async () => {
