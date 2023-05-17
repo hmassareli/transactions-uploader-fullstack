@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[{\r\n\"amount\": 12750,\r\n\"date\": \"2022-01-15T19:20:30-03:00\",\r\n\"productName\":\"CURSO DE BEM-ESTAR\",\r\n\"sellerName\":\"JOSE CARLOS\",\r\n\"type\":\"producer_sell\",\r\n\"affected_user\": \"JOSE CARLOS\"\r\n},{\r\n\"amount\":12750,\r\n\"date\": \"2022-01-15T19:20:30-03:00\",\r\n\"productName\":\"CURSO DE BEM-ESTAR\",\r\n\"sellerName\":\"JOSE CARLOS2\",\r\n\"type\":\"producer_sell\",\r\n\"affected_user\": \"JOSE CARLOS\"\r\n}]",
+					"raw": "[{\r\n\"amount\": 12750,\r\n\"date\": \"2022-01-15\",\r\n\"productName\":\"CURSO DE BEM-ESTAR\",\r\n\"sellerName\":\"JOSE CARLOS\",\r\n\"type\":\"producer_sell\",\r\n\"affectedUser\": \"JOSE CARLOS\"\r\n},{\r\n\"amount\":12750,\r\n\"date\": \"2022-01-15\",\r\n\"productName\":\"CURSO DE BEM-ESTAR\",\r\n\"sellerName\":\"JOSE CARLOS2\",\r\n\"type\":\"producer_sell\",\r\n\"affectedUser\": \"JOSE CARLOS\"\r\n}]",
 					"options": {
 						"raw": {
 							"language": "json"
