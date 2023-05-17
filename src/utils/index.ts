@@ -1,3 +1,4 @@
+import { Balances, NormalizedBalance } from "@/services";
 import { Transaction, TransactionTypes } from "@/types";
 import moment from "moment";
 
@@ -56,4 +57,37 @@ export const fromCentsToDollars = (cents: number) => {
 
 export const formatDate = (formatString: string, date: string) => {
   return moment(date).format(formatString);
+};
+
+export const normalizeBalances = (
+  transactions: Transaction[]
+): NormalizedBalance[] => {
+  const balances = transactions.reduce(
+    (acc: Balances, curr: Transaction): Balances => {
+      if (acc[curr.affectedUser]) {
+        acc[curr.affectedUser].balance += curr.amount;
+      } else {
+        acc[curr.affectedUser] = {
+          balance: curr.amount,
+          type: "producer",
+        };
+      }
+      if (curr.type === "affiliate_sell" && !acc[curr.sellerName]) {
+        acc[curr.sellerName] = {
+          type: "affiliate",
+          balance: 0,
+        };
+      }
+      return acc;
+    },
+    {}
+  );
+  const normalizedBalances = Object.entries(balances).reduce(
+    (acc: NormalizedBalance[], [key, values]) => {
+      return [...acc, { user: key, ...values }];
+    },
+    []
+  );
+
+  return normalizedBalances;
 };
