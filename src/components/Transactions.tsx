@@ -1,6 +1,5 @@
 import { Transaction } from "@/types";
-import { fromCentsToDollars } from "@/utils";
-import moment from "moment";
+import { formatDate, fromCentsToDollars } from "@/utils";
 
 const Transactions = ({
   allTransactions,
@@ -27,7 +26,7 @@ const Transactions = ({
           >
             <p className="w-[200px] text-[#1944A0]">
               {" "}
-              {moment(transaction.date).format("YYYY-MM-DD")}
+              {formatDate("YYYY-MM-DD", transaction.date)}
             </p>
             <p className="w-[200px] text-[#1944A0]">{transaction.sellerName}</p>
             <p className="w-[250px] text-[#1944A0]">

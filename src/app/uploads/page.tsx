@@ -2,7 +2,7 @@
 import Uploads from "@/components/Uploads";
 import { postTransactions } from "@/services";
 import { Transaction } from "@/types";
-import moment from "moment";
+import { formatDate } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { TransactionsContext } from "../../../context/context";
@@ -17,7 +17,7 @@ const UploadsPage = () => {
           ...acc,
           {
             ...curr,
-            date: `${moment(curr.date).format("YYYY-MM-DD HH:mm:ss")}`,
+            date: formatDate("YYYY-MM-DD HH:mm:ss", curr.date),
           },
         ];
       },

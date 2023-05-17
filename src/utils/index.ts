@@ -54,7 +54,6 @@ export const fromCentsToDollars = (cents: number) => {
   return (cents / 100).toFixed(2);
 };
 
-export const formatDateForSQL = () => {
-  const originalDate = "2022-01-15T19:20:30-03:00";
-  return moment(originalDate).format("YYYY-MM-DD HH:mm:ss");
+export const formatDate = (formatString: string, date: string) => {
+  return moment(date).format(formatString);
 };
