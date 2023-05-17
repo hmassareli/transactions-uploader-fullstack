@@ -1,12 +1,31 @@
 # transactions-uploader-fullstack
 
-A simple interface to handle file uploads and send transactions information to the backend
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a NEXT.js project implementing both backend and frontend sides.  
+The objetive is to handle uploads of a transactions list,
+insert into a database, and show data related to users and transactions.
 
-## Getting Started
+This project has a 100% coverage of unit tests, and as a plus, I implemented some end-to-end tests checking if the components are showing the transactions based on information provided in the props.  
 
-First, run the development server:
+You can see a live version hosted at vercel using a free db service on the link https://transactions-uploader-fullstack-hmassareli.vercel.app/
+
+
+
+### Getting Started locally:
+#### 1 - First, create an .env.local with the following information:
+
+MYSQL_HOST= localhost  
+MYSQL_PORT=3306  
+MYSQL_DATABASE=transactions  
+MYSQL_USER=root  
+MYSQL_PASSWORD=  
+
+#### 3 - start a MYSQL server 
+You can use xampp or other app to run the mysql and apache server
+Create a database called transactions
+Import the mysql dump called "init.db" located on the root folder to create the table transactions
+
+#### 3 - run the development server:
 
 ```bash
 npm run dev
@@ -16,23 +35,15 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### How to run tests:
+```bash
+npm run test
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Getting Started on docker:
+If you prefer running the app using Docker and Docker Compose, you can execute the following command:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+docker-compose up --build
+```
+This command will build and run the Docker containers defined in the docker-compose.yml file, allowing you to run the app in a containerized environment.
