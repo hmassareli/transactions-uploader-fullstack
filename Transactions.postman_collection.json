@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "d437dd5f-17e6-415d-84da-cf5fc8f12d9e",
+		"name": "Transactions",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19113578"
+	},
+	"item": [
+		{
+			"name": "Post a new Transaction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n\"amount\": 12750,\r\n\"date\": \"2022-01-15T19:20:30-03:00\",\r\n\"productName\":\"CURSO DE BEM-ESTAR\",\r\n\"sellerName\":\"JOSE CARLOS\",\r\n\"type\":\"producer_sell\"\r\n},{\r\n\"amount\":12750,\r\n\"date\": \"2022-01-15T19:20:30-03:00\",\r\n\"productName\":\"CURSO DE BEM-ESTAR\",\r\n\"sellerName\":\"JOSE CARLOS2\",\r\n\"type\":\"producer_sell\"\r\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{LOCALHOST}}/api/transactions",
+					"host": [
+						"{{LOCALHOST}}"
+					],
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a history of transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{LOCALHOST}}/api/transactions",
+					"host": [
+						"{{LOCALHOST}}"
+					],
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Balances",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{LOCALHOST}}/api/balances",
+					"host": [
+						"{{LOCALHOST}}"
+					],
+					"path": [
+						"api",
+						"balances"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
