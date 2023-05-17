@@ -14,6 +14,11 @@ You can see a live version hosted at vercel using a free db service on the link 
 ### Getting Started locally:
 #### 1 - First, create an .env.local with the following information:
 
+Install the packages
+```bash
+npm install
+```
+
 MYSQL_HOST= localhost  
 MYSQL_PORT=3306  
 MYSQL_DATABASE=transactions  
@@ -21,9 +26,9 @@ MYSQL_USER=root
 MYSQL_PASSWORD=  
 
 #### 3 - start a MYSQL server 
-You can use xampp or other app to run the mysql and apache server
-Create a database called transactions
-Import the mysql dump called "init.db" located on the root folder to create the table transactions
+- **You can use xampp** or other app to run the mysql and apache server
+- **Create a database** called transactions
+- **Import the mysql dump** called "init.db" located on the root folder to create the table transactions
 
 #### 3 - run the development server:
 
